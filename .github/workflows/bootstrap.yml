@@ -29,7 +29,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .bootstrap/chunk* | base64 --decode > /tmp/myworkshop.tar.gz
+          cat \
+            .bootstrap/chunk00 \
+            .bootstrap/fix01a \
+            .bootstrap/fix01b \
+            .bootstrap/fix01c \
+            .bootstrap/fix01d \
+            .bootstrap/fix01e \
+            .bootstrap/chunk02 \
+            .bootstrap/chunk03 \
+            .bootstrap/fix04a \
+            .bootstrap/fix04b \
+            .bootstrap/fix04c \
+            .bootstrap/fix04d \
+            .bootstrap/fix04e \
+            .bootstrap/chunk05 \
+            | base64 --decode > /tmp/myworkshop.tar.gz
           echo "0a38dba6dc07a168a03556fa1ef03c93090b79d56ee3e5a4071cf4f9bf600aca  /tmp/myworkshop.tar.gz" | sha256sum --check -
           tar --extract --gzip --file /tmp/myworkshop.tar.gz --no-same-owner
           rm -rf .bootstrap .github/workflows/bootstrap.yml
