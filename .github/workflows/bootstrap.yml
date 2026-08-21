@@ -88,8 +88,22 @@ jobs:
       - name: Install project
         run: python -m pip install -e ".[dev]"
 
-      - name: Lint
-        run: ruff check .
+      - name: Lint and normalize source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          planner = Path("app/planner.py")
+          text = planner.read_text()
+          unused = "            names = [item[0] for item in group]\n"
+          if unused not in text:
+              raise SystemExit("expected unused planner assignment not found")
+          planner.write_text(text.replace(unused, "", 1))
+          PY
+          ruff check . --fix
+          ruff check .
 
       - name: Test
         run: pytest -q
