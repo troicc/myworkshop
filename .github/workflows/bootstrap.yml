@@ -1,0 +1,42 @@
+name: bootstrap-workstation
+
+on:
+  push:
+    branches:
+      - feat/brand-content-workstation
+    paths:
+      - ".bootstrap/**"
+      - ".github/workflows/bootstrap.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/brand-content-workstation
+          fetch-depth: 0
+
+      - name: Verify and unpack workstation source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .bootstrap/chunk* | base64 --decode > /tmp/myworkshop.tar.gz
+          echo "0a38dba6dc07a168a03556fa1ef03c93090b79d56ee3e5a4071cf4f9bf600aca  /tmp/myworkshop.tar.gz" | sha256sum --check -
+          tar --extract --gzip --file /tmp/myworkshop.tar.gz --no-same-owner
+          rm -rf .bootstrap .github/workflows/bootstrap.yml
+
+      - name: Commit complete implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "feat: add brand-consistent AI content workstation"
+          git push origin HEAD:feat/brand-content-workstation
