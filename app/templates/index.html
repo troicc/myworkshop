@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ brand.name }} · MyWorkshop</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/app.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">MYWORKSHOP / {{ brand.version }}</div>
+        <h1>{{ brand.name }}</h1>
+        <p>{{ brand.copywriting.tagline }}</p>
+      </div>
+      <div class="provider-box">
+        <span>文本 <b>{{ providers.llm }}</b></span>
+        <span>图片 <b>{{ providers.image }}</b></span>
+        <span>审查 <b>{{ providers.vision }}</b></span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel composer">
+        <div class="section-title">
+          <span>01</span>
+          <div><h2>新建内容项目</h2><p>先生成内容合同，再生成素材和统一排版。</p></div>
+        </div>
+        <form id="generate-form">
+          <label>标题
+            <textarea name="title" required minlength="4" maxlength="100">早八来不及做饭｜8套10分钟早餐</textarea>
+          </label>
+          <div class="two-col">
+            <label>目标用户<input name="audience" value="需要准时出门的上班族"></label>
+            <label>页数<input name="slide_count" type="number" min="3" max="10" value="5"></label>
+          </div>
+          <label>使用场景<input name="scenario" value="工作日早晨可用时间不超过10分钟"></label>
+          <label>核心目标<input name="objective" value="给出可以轮换、容易准备的早餐组合"></label>
+          <label>来源备注（每行一条）
+            <textarea name="source_notes" placeholder="粘贴原始资料标题、URL或人工核验说明"></textarea>
+          </label>
+          <label>禁止声称（每行一条）
+            <textarea name="avoid_claims" placeholder="例如：不承诺减重，不涉及疾病治疗"></textarea>
+          </label>
+          <button class="primary" type="submit">生成完整项目</button>
+          <div id="generate-status" class="status-note">当前模式不会把 API Key 发送到浏览器。</div>
+        </form>
+      </section>
+
+      <aside class="panel brand-card">
+        <div class="section-title">
+          <span>02</span>
+          <div><h2>Brand DNA</h2><p>每次生成都会绑定同一个版本指纹。</p></div>
+        </div>
+        <dl>
+          <div><dt>Style ID</dt><dd>{{ brand.style_id }}</dd></div>
+          <div><dt>主媒介</dt><dd>{{ brand.visual.medium }}</dd></div>
+          <div><dt>固定符号</dt><dd>{{ brand.visual.signature_motif }}</dd></div>
+          <div><dt>构图原则</dt><dd>{{ brand.visual.subject_rule }}</dd></div>
+        </dl>
+        <div class="swatches">
+          <i style="--swatch:{{ brand.palette.paper }}"></i>
+          <i style="--swatch:{{ brand.palette.primary }}"></i>
+          <i style="--swatch:{{ brand.palette.accent }}"></i>
+          <i style="--swatch:{{ brand.palette.ink }}"></i>
+        </div>
+        <form id="reference-form" class="upload-box">
+          <label>加入批准参考图<input type="file" name="file" accept="image/png,image/jpeg,image/webp" required></label>
+          <button type="submit">上传参考图</button>
+          <small id="reference-status">只使用你有权使用、并且真正认可的样张。</small>
+        </form>
+      </aside>
+    </main>
+
+    <section class="projects-section">
+      <div class="section-title wide-title">
+        <span>03</span>
+        <div><h2>项目与成品</h2><p>每个项目保留计划、Prompt、原始素材、审查记录和导出包。</p></div>
+        <button id="refresh-projects" class="ghost">刷新</button>
+      </div>
+      <div id="projects" class="projects"></div>
+    </section>
+  </div>
+  <script src="{{ url_for('static', path='/app.js') }}"></script>
+</body>
+</html>

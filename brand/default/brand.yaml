@@ -1,0 +1,68 @@
+name: "下班好好吃"
+version: "1.0.0"
+canvas:
+  width: 1080
+  height: 1440
+  safe_margin: 72
+  corner_radius: 32
+palette:
+  paper: "#F4E9D8"
+  ink: "#1F2A24"
+  muted: "#68716B"
+  primary: "#4F7A61"
+  accent: "#C96645"
+  card: "#FFFDF8"
+  line: "#8FA18F"
+typography:
+  sans_candidates:
+    - "/System/Library/Fonts/PingFang.ttc"
+    - "/System/Library/Fonts/Hiragino Sans GB.ttc"
+    - "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
+    - "C:/Windows/Fonts/msyh.ttc"
+  serif_candidates:
+    - "/System/Library/Fonts/Songti.ttc"
+    - "/usr/share/fonts/opentype/noto/NotoSerifCJK-Regular.ttc"
+  title_size: 76
+  h2_size: 52
+  body_size: 30
+  small_size: 22
+  line_spacing: 1.25
+layout:
+  title_max_lines: 3
+  body_max_lines: 8
+  card_gap: 18
+  footer_height: 56
+  image_radius: 36
+  signature_position: "bottom-left"
+visual:
+  medium: "克制的生活方式编辑摄影；必要时可使用具有纸张触感的简洁写实插画"
+  subject_rule: "一个主视觉簇占画面25%至55%，物体数量可数、份量真实，不堆满整页"
+  camera: "35至55毫米自然透视，45度轻俯视为主；同一系列保持相近镜头高度"
+  lighting: "柔和的自然侧光，阴影边缘清楚但不过硬，不使用霓虹或过度电影光"
+  background: "暖米色、浅木色或低饱和厨房表面；背景连续，不额外生成文字卡片"
+  texture: "轻微旧纸与真实食物表面质感，低锐化，不使用塑料般高光"
+  prop_rule: "每页最多两类辅助道具；不出现品牌包装、复杂餐具阵列和无关装饰"
+  signature_motif: "橙红圆形切角、墨绿弧线和三片叶形作为固定编辑符号，由本地排版渲染"
+  continuity_rules:
+    - "所有图片使用相近色温、自然侧光和普通真实份量"
+    - "主背景保持暖米色与低饱和木色，不突然切换纯黑、霓虹或高对比商业棚拍"
+    - "封面保留大块标题安全区，内页轮换顶部或左侧安全区"
+    - "图片中不生成文字；标题、页码、标签和签名全部由本地渲染"
+    - "同一系列只允许改变主体与局部构图，不改变核心镜头语言"
+  negative_rules:
+    - "任何文字、数字、伪文字、Logo、水印"
+    - "高饱和霓虹、赛博朋克、商业促销海报"
+    - "夸张蒸汽、漂浮食材、过量堆叠、巨型份量"
+    - "人物畸形手部、虚构医生、药品、保健品、医疗图标"
+    - "明显复制其他账号的版式、标志或可识别商业包装"
+copy:
+  account_name: "下班好好吃"
+  tagline: "给忙碌上班族的可执行一人食方案"
+  footer_left: "AI辅助制图｜内容经人工核对"
+  footer_right: "事实需按来源与个人情况核对"
+  ai_disclosure: "AI辅助整理与制图，发布前经人工核对"
+  tone_rules:
+    - "使用普通人能执行的动作和份量，不制造容貌或健康焦虑"
+    - "标题明确人群、场景、限制和可获得的结果"
+    - "不使用万能、神器、逆袭、闭眼冲、医生不会告诉你等话术"
+    - "没有来源的数据不写成确定事实；不确定时明确需要核验"
