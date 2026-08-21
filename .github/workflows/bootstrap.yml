@@ -48,6 +48,7 @@ jobs:
           echo "15d3b7deba5e04317988bb8683d4ddaea53cf1991b9fd335b6302a624f266e26  /tmp/myworkshop.tar.gz" | sha256sum --check -
           tar --extract --gzip --file /tmp/myworkshop.tar.gz --no-same-owner
           rm -rf .bootstrap .github/workflows/bootstrap.yml
+          rm -f .github/workflows/test.yml
 
           python - <<'PY'
           from pathlib import Path
