@@ -25,12 +25,6 @@ jobs:
           ref: feat/brand-content-workstation
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-
       - name: Verify and unpack workstation source
         shell: bash
         run: |
@@ -39,6 +33,12 @@ jobs:
           echo "0a38dba6dc07a168a03556fa1ef03c93090b79d56ee3e5a4071cf4f9bf600aca  /tmp/myworkshop.tar.gz" | sha256sum --check -
           tar --extract --gzip --file /tmp/myworkshop.tar.gz --no-same-owner
           rm -rf .bootstrap .github/workflows/bootstrap.yml
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
 
       - name: Install system font
         run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
